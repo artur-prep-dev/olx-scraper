@@ -23,6 +23,8 @@ def get_page(url):
 
 def scrape_listings(soup, category):
     listings = []
+
+    # OLX oznacza karty ogloszen przez data-cy="l-card"
     cards = soup.find_all("div", attrs={"data-cy": "l-card"})
 
     if not cards:
@@ -84,6 +86,7 @@ def scrape_category(base_url, category, max_pages=3):
         all_listings.extend(listings)
         print(f"Znaleziono {len(listings)} ogloszen na stronie {page}")
 
+        # losowy delay zeby OLX nas nie zablokowal
         time.sleep(random.uniform(2, 5))
 
     return all_listings
