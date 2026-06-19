@@ -3,6 +3,7 @@ from database import create_connection, create_table, insert_listing
 from cleaner import clean_listing
 import pandas as pd
 
+# TODO: przeniesc kategorie do osobnego pliku konfiguracyjnego
 CATEGORIES = {
     "nieruchomosci": "https://www.olx.pl/nieruchomosci/",
     "elektronika": "https://www.olx.pl/elektronika/",
@@ -35,6 +36,7 @@ def main():
 
 def export_to_csv(conn):
     df = pd.read_sql_query("SELECT * FROM listings", conn)
+    # utf-8-sig zeby polskie znaki dobrze otwieraly sie w Excelu
     df.to_csv("olx_data.csv", index=False, encoding="utf-8-sig")
     print("Dane wyeksportowane do olx_data.csv")
 
