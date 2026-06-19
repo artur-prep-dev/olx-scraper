@@ -22,6 +22,7 @@ def create_table(conn):
     print("Tabela utworzona!")
 
 def insert_listing(conn, listing):
+    # OR IGNORE - pomija duplikaty po url (UNIQUE constraint)
     query = """
     INSERT OR IGNORE INTO listings 
     (title, price, location, date_added, url, category)
