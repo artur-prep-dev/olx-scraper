@@ -3,11 +3,13 @@ import re
 def clean_price(price_str):
     if not price_str:
         return None
+    # usuwa "zl", spacje i inne znaki - zostawia tylko cyfry
     cleaned = re.sub(r"[^\d,.]", "", price_str)
     cleaned = cleaned.replace(",", ".")
     try:
         return float(cleaned)
     except ValueError:
+        # zwraca None dla ofert typu "Zamienie", "Do negocjacji"
         return None
 
 def clean_title(title):
